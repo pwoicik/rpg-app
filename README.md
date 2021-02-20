@@ -36,6 +36,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     * Zdobywanie punktów doświadczenia wraz z opisem
     * Wydawanie punktów doświadczenia
   * Punkty szczęścia/przeznaczenia
+    * Nowy dzień nowe punkty dla każdego
   * Sakiewka
     * Kalkulator walutowy
   * Zarządanie ekwipunkiem
@@ -45,6 +46,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * Rzuty kośćmi
   * Różnościenne
   * Obliczanie sukcesu
+  * Rzuty prywatne dla GM
 * Zadania
   * Dodawanie zadań przez GM
   * Odebranie nagrody za wykonane zadania
@@ -69,3 +71,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * Zarządzanie bohaterami gracza
 * Tryb obserwatora
   * ??? low priority
+* Walka
+  * Tryb walki, GM wyznacza osoby mające ruch

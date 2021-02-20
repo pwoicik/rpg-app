@@ -1,12 +1,5 @@
 <template>
-  <div v-if="user === null" id="nav">
-    <router-link to="/">Home</router-link>
-    |
-    <a @click="signIn">Sign in</a>
-  </div>
-  <div v-else id="nav">
-    <user-dropdown />
-  </div>
+  <user-dropdown />
   <router-view />
 </template>
 
@@ -34,19 +27,8 @@ body {
   width: 100%;
 }
 
-#nav {
-  z-index: 1;
-  position: absolute;
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+#user-dropdown + * {
+  padding: 2rem;
 }
 </style>
 
@@ -68,30 +50,11 @@ export default {
       user: computed(() => this.user)
     };
   },
-  mounted() {
+  created() {
     firebase.auth().onAuthStateChanged(usr => {
       this.user = usr;
+      this.$router.push({ name: usr ? "Home" : "SignIn" });
     });
-  },
-  methods: {
-    signIn: async function() {
-      await firebase
-        .auth()
-        .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .catch(console.log);
-      const provider = new firebase.auth.GoogleAuthProvider();
-
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .catch(alert);
-    },
-    logout: function() {
-      firebase
-        .auth()
-        .signOut()
-        .catch(alert);
-    }
   }
 };
 </script>

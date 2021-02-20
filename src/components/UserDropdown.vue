@@ -44,9 +44,13 @@ export default {
 </script>
 
 <style scoped>
+@import "../style/colors.css";
+
 #user-dropdown {
   display: inline-block;
-  position: relative;
+  position: fixed;
+  top: 0.7rem;
+  right: 1rem;
 }
 
 .user-summary > * {
@@ -57,7 +61,7 @@ export default {
 .user-photo {
   height: 2.5rem;
   border-radius: 50%;
-  margin-right: 0.4rem;
+  margin-right: 0.7rem;
 }
 
 .dropdown-caret {
@@ -67,10 +71,10 @@ export default {
   vertical-align: middle;
   content: "";
   border-top-style: solid;
-  border-top-width: 4px;
-  border-right: 4px solid transparent;
+  border-top-width: 5px;
+  border-right: 5px solid transparent;
   border-bottom: 0 solid transparent;
-  border-left: 4px solid transparent;
+  border-left: 5px solid transparent;
 }
 
 .user-summary:hover {
@@ -78,13 +82,23 @@ export default {
 }
 
 .dropdown-menu {
+  font-weight: 600;
   background-color: white;
+  opacity: 66%;
   position: absolute;
   right: 0;
   margin-top: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #606060;
+  border-radius: 7px;
   padding: 0.25rem 0;
+}
+
+b {
+  font-weight: 700;
+}
+
+.dropdown-menu * {
+  cursor: default;
+  color: var(--seconadary-dark-fg-color);
 }
 
 .dropdown-items {
