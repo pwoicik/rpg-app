@@ -1,6 +1,6 @@
 {
   "name": "rpg-app",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "firebase": "^8.2.9",
+    "firebaseui": "^4.7.3",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
@@ -33,17 +35,16 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
+      "plugin:vue/strongly-recommended",
       "eslint:recommended",
       "@vue/prettier"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    },
-    "rules": {}
+    }
   },
   "browserslist": [
-    "> 1%",
+    "> 5%",
     "last 2 versions",
     "not dead"
   ]
