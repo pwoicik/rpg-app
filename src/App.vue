@@ -1,18 +1,18 @@
 <template>
-  <div id="app">
-    <div v-if="user === null" id="nav">
-      <router-link to="/">Home</router-link>
-      |
-      <a @click="signIn">Sign in</a>
-    </div>
-    <div v-else id="nav">
-      <user-dropdown />
-    </div>
-    <router-view />
+  <div v-if="user === null" id="nav">
+    <router-link to="/">Home</router-link>
+    |
+    <a @click="signIn">Sign in</a>
   </div>
+  <div v-else id="nav">
+    <user-dropdown />
+  </div>
+  <router-view />
 </template>
 
 <style>
+@import "style/colors.css";
+
 * {
   font-family: "Open Sans", sans-serif;
   box-sizing: border-box;
@@ -20,14 +20,23 @@
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
+  color: var(--light-fg-color);
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--main-bg-color);
 }
 
 #app {
-  text-align: center;
-  color: #2c3e50;
+  height: 100%;
+  width: 100%;
 }
 
 #nav {
+  z-index: 1;
+  position: absolute;
   padding: 30px;
 }
 

@@ -41,6 +41,9 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint"
+    },
+    "rules": {
+      "vue/no-multiple-template-root": "warn"
     }
   },
   "browserslist": [
