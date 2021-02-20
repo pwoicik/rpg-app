@@ -53,7 +53,7 @@ export default {
   created() {
     firebase.auth().onAuthStateChanged(usr => {
       this.user = usr;
-      this.$router.push({ name: usr ? "Home" : "SignIn" });
+      this.$router.replace({ name: usr ? "Home" : "SignIn" });
     });
   }
 };

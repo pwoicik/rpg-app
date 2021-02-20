@@ -70,6 +70,11 @@ import "firebase/auth";
 
 export default {
   name: "SignIn",
+  created() {
+    if (firebase.auth().currentUser) {
+      this.$router.replace({ name: "Home" });
+    }
+  },
   methods: {
     signIn: async function() {
       await firebase
@@ -82,7 +87,7 @@ export default {
         .auth()
         .signInWithPopup(provider)
         .then(() => {
-          this.$router.push({ name: "Home" });
+          this.$router.replace({ name: "Home" });
         })
         .catch(console.log);
     }
