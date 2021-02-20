@@ -47,18 +47,26 @@
     transform: rotate(0);
   }
 
+  25% {
+    transform: rotate(180deg);
+  }
+
   50% {
+    transform: rotate(360deg);
+  }
+
+  75% {
     transform: rotate(180deg);
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: rotate(0);
   }
 }
 
 #google-logo {
   height: 3rem;
-  animation: rotate forwards cubic-bezier(1,-1.66,0,.08) 5s;
+  animation: rotate forwards cubic-bezier(1, -1.66, 0, 0.08) 5s;
 }
 
 .home > * {
