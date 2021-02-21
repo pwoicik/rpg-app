@@ -1,10 +1,12 @@
 <template>
   <div id="sign-in">
-    <header><h1>WeLcoMe to tHe RPg APP</h1></header>
-    <div class="login-text" @click="signIn">
-      <span>Log in with </span>
-      <img id="google-logo" src="@/assets/google.svg" alt="" />
-    </div>
+    <section>
+      <header><h1>WeLcoMe to tHe RPg APP</h1></header>
+      <div class="login-text" @click="signIn">
+        <span>Log in with </span>
+        <img id="google-logo" src="@/assets/google.svg" alt="" />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -13,8 +15,6 @@
 
 #sign-in {
   position: absolute;
-  background-color: var(--main-bg-color);
-  z-index: 2;
   height: 100%;
   width: 100%;
   display: flex;
@@ -30,7 +30,7 @@
   }
 
   100% {
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
@@ -51,7 +51,7 @@
   filter: contrast(0.5) grayscale(0.2) hue-rotate(136deg) saturate(0.8);
 }
 
-#sign-in > * {
+section {
   opacity: 0;
   animation: fade-in forwards ease-out 3s;
   animation-delay: 150ms;
@@ -87,7 +87,7 @@ export default {
         .auth()
         .signInWithPopup(provider)
         .then(() => {
-          this.$router.replace({ name: "Home" });
+          this.$router.push({ name: "Home" });
         })
         .catch(console.log);
     }

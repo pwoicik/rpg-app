@@ -3,16 +3,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
-
 export default {
-  name: "Home",
-  created() {
-    if (!firebase.auth().currentUser) {
-      this.$router.replace({ name: "SignIn" });
-    }
-  }
+  name: "Home"
 };
 </script>
-
-<style scoped></style>

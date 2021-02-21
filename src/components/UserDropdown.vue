@@ -1,13 +1,13 @@
 <template>
   <div id="user-dropdown">
-    <div class="user-summary" @click="active = !active">
-      <img class="user-photo" :src="photoURL" alt="" />
+    <div class="user-summary" @click.prevent="active = !active">
+      <img class="user-photo" :src="user.photoURL" alt="" />
       <div class="dropdown-caret" />
     </div>
     <div v-if="active" class="dropdown-menu">
       <div class="dropdown-items">
         <header>
-          Logged in as <b>{{ userName }}</b>
+          Logged in as <b>{{ user.name }}</b>
         </header>
         <div class="separator" />
         <button @click="signOut">Sign out</button>
@@ -19,21 +19,19 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import { inject, ref } from "vue";
+import "@/style/colors.css";
 
 export default {
   name: "UserDropdown",
-  inject: ["user"],
-  data() {
+  setup() {
+    const user = inject("user");
+    const active = ref(false);
+
     return {
-      userName: "",
-      photoURL: null,
-      active: false
+      user,
+      active
     };
-  },
-  created() {
-    const usr = this.user.value;
-    this.userName = usr.displayName;
-    this.photoURL = usr.photoURL;
   },
   methods: {
     signOut: function() {
@@ -44,11 +42,10 @@ export default {
 </script>
 
 <style scoped>
-@import "../style/colors.css";
-
 #user-dropdown {
   display: inline-block;
   position: fixed;
+  z-index: 2;
   top: 0.7rem;
   right: 1rem;
 }
@@ -84,7 +81,7 @@ export default {
 .dropdown-menu {
   font-weight: 600;
   background-color: white;
-  opacity: 66%;
+  opacity: 0.66;
   position: absolute;
   right: 0;
   margin-top: 0.5rem;
