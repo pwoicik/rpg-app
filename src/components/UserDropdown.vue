@@ -1,10 +1,10 @@
 <template>
-  <div id="user-dropdown">
+  <div id="user-dropdown" @mouseleave="active = false">
     <div class="user-summary" @click.prevent="active = !active">
       <img class="user-photo" :src="user.photoURL" alt="" />
       <div class="dropdown-caret" />
     </div>
-    <div v-if="active" class="dropdown-menu">
+    <div v-show="active" class="dropdown-menu">
       <div class="dropdown-items">
         <header>
           Logged in as <b>{{ user.name }}</b>
@@ -45,7 +45,9 @@ export default {
 
 <style scoped>
 #user-dropdown {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   position: fixed;
   z-index: 2;
   top: 0.7rem;
@@ -84,8 +86,6 @@ export default {
   font-weight: 600;
   background-color: white;
   opacity: 0.66;
-  position: absolute;
-  right: 0;
   margin-top: 0.5rem;
   border-radius: 7px;
   padding: 0.25rem 0;
@@ -96,7 +96,6 @@ b {
 }
 
 .dropdown-menu * {
-  cursor: default;
   color: var(--seconadary-dark-fg-color);
 }
 
