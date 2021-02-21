@@ -10,9 +10,40 @@
   </div>
 </template>
 
-<style scoped>
-@import "../style/colors.css";
+<script>
+import firebase from "firebase/app";
+import "firebase/auth";
 
+import "@/style/colors.css";
+
+export default {
+  name: "SignIn",
+  created() {
+    if (firebase.auth().currentUser) {
+      this.$router.replace({ name: "Home" });
+    }
+  },
+  methods: {
+    signIn: async function() {
+      await firebase
+        .auth()
+        .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .catch(console.log);
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(() => {
+          this.$router.push({ name: "Home" });
+        })
+        .catch(console.log);
+    }
+  }
+};
+</script>
+
+<style scoped>
 #sign-in {
   position: absolute;
   height: 100%;
@@ -63,34 +94,3 @@ h1 {
   font-family: "Cinzel Decorative", cursive;
 }
 </style>
-
-<script>
-import firebase from "firebase/app";
-import "firebase/auth";
-
-export default {
-  name: "SignIn",
-  created() {
-    if (firebase.auth().currentUser) {
-      this.$router.replace({ name: "Home" });
-    }
-  },
-  methods: {
-    signIn: async function() {
-      await firebase
-        .auth()
-        .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .catch(console.log);
-      const provider = new firebase.auth.GoogleAuthProvider();
-
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(() => {
-          this.$router.push({ name: "Home" });
-        })
-        .catch(console.log);
-    }
-  }
-};
-</script>

@@ -17,9 +17,11 @@
 </template>
 
 <script>
+import { inject, ref } from "vue";
+
 import firebase from "firebase/app";
 import "firebase/auth";
-import { inject, ref } from "vue";
+
 import "@/style/colors.css";
 
 export default {
