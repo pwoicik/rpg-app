@@ -2,8 +2,8 @@
   <div id="sign-in">
     <section>
       <header><h1>WeLcoMe to tHe RPg APP</h1></header>
-      <div class="login-text" @click="signIn">
-        <span>Log in with </span>
+      <div class="login-text clickable" @click="signIn">
+        <span>Sign in with </span>
         <img id="google-logo" src="@/assets/google.svg" alt="" />
       </div>
     </section>
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { inject } from "vue";
+
 import firebase from "firebase/app";
 import "firebase/auth";
 
@@ -18,34 +20,28 @@ import "@/style/colors.css";
 
 export default {
   name: "SignIn",
-  created() {
-    if (firebase.auth().currentUser) {
-      this.$router.replace({ name: "Home" });
-    }
-  },
-  methods: {
-    signIn: async function() {
-      await firebase
-        .auth()
-        .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .catch(console.log);
+  setup() {
+    const auth = inject("auth");
+
+    async function signIn() {
+      await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(console.log);
       const provider = new firebase.auth.GoogleAuthProvider();
 
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(() => {
-          this.$router.push({ name: "Home" });
-        })
-        .catch(console.log);
+      auth.signInWithPopup(provider).catch(console.log);
     }
-  }
+
+    return {
+      signIn,
+    };
+  },
 };
 </script>
 
 <style scoped>
 #sign-in {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   display: flex;
@@ -53,6 +49,7 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  background-color: var(--main-bg-color);
 }
 
 @keyframes fade-in {
@@ -65,6 +62,12 @@ export default {
   }
 }
 
+section {
+  opacity: 0;
+  animation: fade-in forwards ease-out 3s;
+  animation-delay: 150ms;
+}
+
 .login-text {
   font-size: 2rem;
   display: flex;
@@ -73,19 +76,14 @@ export default {
   gap: 1rem;
 }
 
-.login-text:hover {
+.login-text {
   cursor: pointer;
 }
 
 #google-logo {
   height: 3rem;
+  width: auto;
   filter: contrast(0.5) grayscale(0.2) hue-rotate(136deg) saturate(0.8);
-}
-
-section {
-  opacity: 0;
-  animation: fade-in forwards ease-out 3s;
-  animation-delay: 150ms;
 }
 
 h1 {

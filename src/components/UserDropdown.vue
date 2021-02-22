@@ -1,15 +1,17 @@
 <template>
   <div id="user-dropdown" @mouseleave="active = false">
-    <div class="user-summary" @click.prevent="active = !active">
+    <div class="user-summary clickable" @click.stop="active = !active">
       <img class="user-photo" :src="user.photoURL" alt="" />
       <div class="dropdown-caret" />
     </div>
     <div v-show="active" class="dropdown-menu">
       <div class="dropdown-items">
         <header>
-          Logged in as <b>{{ user.name }}</b>
+          Signed in as &nbsp;<span id="username">{{ user.name }}</span>
         </header>
         <div class="separator" />
+        <button @click="$router.push({ name: 'Home' })">Home</button>
+        <button @click="$router.push({ name: 'Friends' })">Friends</button>
         <button @click="signOut">Sign out</button>
       </div>
     </div>
@@ -19,27 +21,25 @@
 <script>
 import { inject, ref } from "vue";
 
-import firebase from "firebase/app";
-import "firebase/auth";
-
 import "@/style/colors.css";
 
 export default {
   name: "UserDropdown",
   setup() {
+    const auth = inject("auth");
     const user = inject("user");
     const active = ref(false);
 
+    function signOut() {
+      auth.signOut();
+    }
+
     return {
       user,
-      active
+      active,
+      signOut,
     };
   },
-  methods: {
-    signOut: function() {
-      firebase.auth().signOut();
-    }
-  }
 };
 </script>
 
@@ -52,6 +52,10 @@ export default {
   z-index: 2;
   top: 0.7rem;
   right: 1rem;
+}
+
+#user-dropdown * {
+  color: gainsboro;
 }
 
 .user-summary > * {
@@ -78,25 +82,16 @@ export default {
   border-left: 5px solid transparent;
 }
 
-.user-summary:hover {
-  cursor: pointer;
-}
-
 .dropdown-menu {
-  font-weight: 600;
-  background-color: white;
-  opacity: 0.66;
+  background-color: var(--main-bg-color);
   margin-top: 0.5rem;
+  border: solid var(--light-fg-color) 1px;
   border-radius: 7px;
   padding: 0.25rem 0;
 }
 
-b {
-  font-weight: 700;
-}
-
-.dropdown-menu * {
-  color: var(--seconadary-dark-fg-color);
+#username {
+  font-weight: bold;
 }
 
 .dropdown-items {
@@ -108,7 +103,7 @@ b {
 
 .dropdown-items > *:not(.separator) {
   text-align: left;
-  padding: 0.25rem 0.5rem;
+  padding: 0.4rem 1rem;
   width: 100%;
 }
 
@@ -120,6 +115,8 @@ button:hover {
 .separator {
   width: 100%;
   border-top: 1px solid #606060;
+  align-self: center;
+  margin-top: 0.24rem;
 }
 
 button {

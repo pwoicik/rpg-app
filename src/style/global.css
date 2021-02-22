@@ -1,6 +1,6 @@
 * {
     cursor: default;
-    font-family: "Open Sans", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -20,6 +20,11 @@ body {
     width: 100%;
 }
 
-a {
+#app:nth-child(2) {
+    padding: 2rem;
+}
+
+.clickable,
+.clickable * {
     cursor: pointer;
 }
