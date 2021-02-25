@@ -36,7 +36,6 @@ body {
 
 button {
   all: unset;
-  cursor: pointer;
 }
 
 .visually-hidden {

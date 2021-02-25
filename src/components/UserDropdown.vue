@@ -4,7 +4,7 @@
       <img class="user-photo" :src="user.photoURL" alt="" />
       <div class="dropdown-caret" />
     </div>
-    <div v-show="active" class="dropdown-menu">
+    <div v-show="active" class="dropdown-menu clickable">
       <div class="dropdown-items">
         <header>
           Signed in as &nbsp;<span id="username">{{ user.name }}</span>

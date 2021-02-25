@@ -3,7 +3,7 @@
     <label id="friends-label" for="friends">Friends</label>
     <main>
       <section>
-        <button id="add-friend-button" @click="null">Add friend</button>
+        <button id="add-friend-button" class="clickable" @click="null">Add friend</button>
         <div id="friends-list">
           <friend-list-element v-for="i in list" :key="i" :active="!!i">
             This is an example
