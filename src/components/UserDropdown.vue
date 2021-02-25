@@ -92,7 +92,6 @@ export default {
 
 #username {
   font-weight: bold;
-  cursor: default;
 }
 
 .dropdown-items {
