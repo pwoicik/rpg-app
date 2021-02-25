@@ -109,7 +109,6 @@ export default {
 
 button:hover {
   background-color: #42b983;
-  cursor: pointer;
 }
 
 .separator {
