@@ -63,7 +63,9 @@
         <div class id="chat-input-form">
           <label class="visually-hidden" for="chat-input">Type message here:</label>
           <input id="chat-input" type="text" placeholder="Aa" />
-          <img id="send-button" class="clickable" src="../assets/send.svg" alt="Send" />
+          <button id="send-button" class="clickable">
+            <img src="../assets/send.svg" alt="Send" />
+          </button>
         </div>
       </section>
     </main>
@@ -166,7 +168,7 @@ main > * {
   outline: unset;
 }
 
-#send-button {
+#send-button > img {
   height: 1.75rem;
   filter: invert(100%);
 }

@@ -4,7 +4,7 @@
       <img class="user-photo" :src="user.photoURL" alt="" />
       <div class="dropdown-caret" />
     </div>
-    <div v-show="active" class="dropdown-menu clickable">
+    <div v-show="active" class="dropdown-menu">
       <div class="dropdown-items">
         <header>
           Signed in as &nbsp;<span id="username">{{ user.name }}</span>
@@ -92,6 +92,7 @@ export default {
 
 #username {
   font-weight: bold;
+  cursor: default;
 }
 
 .dropdown-items {
@@ -108,7 +109,7 @@ export default {
 }
 
 button:hover {
-  background-color: #42b983;
+  background-color: var(--seconadary-dark-fg-color);
 }
 
 .separator {
@@ -121,5 +122,6 @@ button:hover {
 button {
   all: inherit;
   padding: 0;
+  cursor: pointer;
 }
 </style>
