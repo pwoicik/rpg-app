@@ -10,9 +10,9 @@
           Signed in as &nbsp;<span id="username">{{ user.name }}</span>
         </header>
         <div class="separator" />
-        <button class="clickable" @click="$router.push({ name: 'Home' })">Home</button>
-        <button class="clickable" @click="$router.push({ name: 'Friends' })">Friends</button>
-        <button class="clickable" @click="signOut">Sign out</button>
+        <button @click="$router.push({ name: 'Home' })">Home</button>
+        <button @click="$router.push({ name: 'Friends' })">Friends</button>
+        <button @click="signOut">Sign out</button>
       </div>
     </div>
   </div>
@@ -121,5 +121,6 @@ button:hover {
 button {
   all: inherit;
   padding: 0;
+  cursor: pointer;
 }
 </style>
