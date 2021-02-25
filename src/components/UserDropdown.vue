@@ -4,15 +4,15 @@
       <img class="user-photo" :src="user.photoURL" alt="" />
       <div class="dropdown-caret" />
     </div>
-    <div v-show="active" class="dropdown-menu clickable">
+    <div v-show="active" class="dropdown-menu">
       <div class="dropdown-items">
         <header>
           Signed in as &nbsp;<span id="username">{{ user.name }}</span>
         </header>
         <div class="separator" />
-        <button @click="$router.push({ name: 'Home' })">Home</button>
-        <button @click="$router.push({ name: 'Friends' })">Friends</button>
-        <button @click="signOut">Sign out</button>
+        <button class="clickable" @click="$router.push({ name: 'Home' })">Home</button>
+        <button class="clickable" @click="$router.push({ name: 'Friends' })">Friends</button>
+        <button class="clickable" @click="signOut">Sign out</button>
       </div>
     </div>
   </div>
