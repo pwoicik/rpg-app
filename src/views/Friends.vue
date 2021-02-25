@@ -8,7 +8,22 @@
           <friend-list-element v-for="i in list" :key="i" :active="i" />
         </div>
       </section>
-      <section id="chat">Chat</section>
+      <section id="chat">
+        <div id="chat-messages"></div>
+        <div class="separator" />
+        <div class id="chat-input">
+          <input id="chat-text" type="text" placeholder="Aa" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="23" viewBox="0 0 26 23">
+            <path
+              id="Polygon_3"
+              data-name="Polygon 3"
+              d="M11.5,0,23,26H0Z"
+              transform="translate(26) rotate(90)"
+              fill="#0191ff"
+            />
+          </svg>
+        </div>
+      </section>
     </main>
   </div>
 </template>
@@ -61,7 +76,41 @@ main > * {
 }
 
 #chat {
+  padding: 1rem;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   min-height: 80vh;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.56);
+}
+
+#chat-messages {
+  flex: 1;
+}
+
+.separator {
+  width: 100%;
+  border-top: 1px solid #606060;
+  align-self: center;
+}
+
+#chat-input {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  background-color: var(--main-bg-color);
+  margin-right: 0;
+}
+
+#chat-text {
+  flex: 1;
+  background-color: var(--main-bg-color);
+  border: none;
+  font-size: 0.8em;
+}
+
+#chat-text:focus {
+  outline: unset;
 }
 </style>
