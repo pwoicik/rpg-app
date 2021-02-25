@@ -44,12 +44,14 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
   background-color: var(--main-bg-color);
+  overflow: auto;
 }
 
 @keyframes fade-in {
