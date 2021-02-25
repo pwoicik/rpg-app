@@ -7,7 +7,9 @@
     />
     <div class="friend-summary">
       <header>Adam Krucan</header>
-      <span class="last-msg">Dlaczego TEDE kurwą jest</span>
+      <span class="last-msg">
+        <slot />
+      </span>
     </div>
   </div>
 </template>
@@ -15,7 +17,13 @@
 <script>
 export default {
   name: "FriendListElement",
-  props: ["active"],
+  props: {
+    active: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+  },
 };
 </script>
 

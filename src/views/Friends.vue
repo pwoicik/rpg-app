@@ -5,23 +5,65 @@
       <section>
         <button id="add-friend-button" @click="null">Add friend</button>
         <div id="friends-list">
-          <friend-list-element v-for="i in list" :key="i" :active="i" />
+          <friend-list-element v-for="i in list" :key="i" :active="!!i">
+            This is an example
+          </friend-list-element>
         </div>
       </section>
       <section id="chat">
-        <div id="chat-messages"></div>
-        <div class="separator" />
-        <div class id="chat-input">
-          <input id="chat-text" type="text" placeholder="Aa" />
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="23" viewBox="0 0 26 23">
-            <path
-              id="Polygon_3"
-              data-name="Polygon 3"
-              d="M11.5,0,23,26H0Z"
-              transform="translate(26) rotate(90)"
-              fill="#0191ff"
-            />
-          </svg>
+        <div id="chat-messages">
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="false">
+            Seems fine
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            It works
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="false">
+            Test message
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="false">
+            Testing
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="false">
+            This is a test message
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="false">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+          <chat-message :date="'25.02.2021 16:29'" :is-sent-by-current-user="true">
+            This is a very long message it can overflow so we want to check this before we deploy
+            this shit on the live server
+          </chat-message>
+        </div>
+        <div class id="chat-input-form">
+          <label class="visually-hidden" for="chat-input">Type message here:</label>
+          <input id="chat-input" type="text" placeholder="Aa" />
+          <img id="send-button" class="clickable" src="../assets/send.svg" alt="Send" />
         </div>
       </section>
     </main>
@@ -35,10 +77,11 @@ export default {
   name: "Friends",
   components: {
     FriendListElement: defineAsyncComponent(() => import("@/components/FriendListElement")),
+    ChatMessage: defineAsyncComponent(() => import("@/components/ChatMessage")),
   },
   data() {
     return {
-      list: [true, false, false],
+      list: [true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     };
   },
 };
@@ -73,44 +116,58 @@ main > * {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow-y: auto;
+  max-height: 80vh;
+  direction: rtl;
+}
+
+#friends-list > * {
+  direction: initial;
 }
 
 #chat {
-  padding: 1rem;
-  gap: 0.5rem;
   display: flex;
   flex-direction: column;
-  position: relative;
-  min-height: 80vh;
+  gap: 0.5rem;
+  height: calc(80vh + 3rem);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.56);
 }
 
 #chat-messages {
+  padding: 1rem;
   flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  min-height: fit-content;
+  overflow-y: auto;
 }
 
-.separator {
+#chat-input-form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
   width: 100%;
-  border-top: 1px solid #606060;
-  align-self: center;
+  padding: 0.7rem;
+  background-color: var(--main-bg-color);
+  margin-right: 0;
+  box-shadow: 0 -2px 1px 0 rgba(67, 67, 67, 0.5);
 }
 
 #chat-input {
-  display: flex;
-  width: 100%;
-  gap: 0.5rem;
-  background-color: var(--main-bg-color);
-  margin-right: 0;
-}
-
-#chat-text {
   flex: 1;
   background-color: var(--main-bg-color);
   border: none;
   font-size: 0.8em;
+  cursor: text;
 }
 
-#chat-text:focus {
+#chat-input:focus {
   outline: unset;
+}
+
+#send-button {
+  height: 1.75rem;
+  filter: invert(100%);
 }
 </style>
