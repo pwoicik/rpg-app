@@ -19,26 +19,27 @@
 </template>
 
 <script>
-import { inject, ref } from "vue";
-
 import "@/style/colors.css";
 
 export default {
   name: "UserDropdown",
-  setup() {
-    const auth = inject("auth");
-    const user = inject("user");
-    const active = ref(false);
 
-    function signOut() {
-      auth.signOut();
-    }
-
+  data() {
     return {
-      user,
-      active,
-      signOut,
+      active: false,
     };
+  },
+
+  computed: {
+    user() {
+      return this.$store.state.auth.user;
+    },
+  },
+
+  methods: {
+    signOut() {
+      this.$store.dispatch("auth/signOut");
+    },
   },
 };
 </script>
@@ -114,6 +115,7 @@ button:hover {
 .separator {
   width: 100%;
   border-top: 1px solid #606060;
+
   align-self: center;
   margin-top: 0.24rem;
 }

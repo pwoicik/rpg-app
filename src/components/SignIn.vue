@@ -11,28 +11,15 @@
 </template>
 
 <script>
-import { inject } from "vue";
-
-import firebase from "firebase/app";
-import "firebase/auth";
-
 import "@/style/colors.css";
 
 export default {
   name: "SignIn",
-  setup() {
-    const auth = inject("auth");
 
-    async function signIn() {
-      await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(console.log);
-      const provider = new firebase.auth.GoogleAuthProvider();
-
-      auth.signInWithPopup(provider).catch(console.log);
-    }
-
-    return {
-      signIn,
-    };
+  methods: {
+    signIn() {
+      this.$store.dispatch("auth/signIn");
+    },
   },
 };
 </script>

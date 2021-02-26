@@ -11,6 +11,9 @@
         <slot />
       </span>
     </div>
+    <button class="friend-actions-dropdown-button" @click="null">
+      <img src="../assets/more.svg" alt="More" />
+    </button>
   </div>
 </template>
 
@@ -32,8 +35,9 @@ export default {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
   border-radius: 14px;
+  width: max-content;
 }
 
 .friend-list-el:hover:not(.active) {
@@ -53,5 +57,22 @@ export default {
 .last-msg {
   font-size: 0.8em;
   opacity: 0.75;
+}
+
+.friend-actions-dropdown-button {
+  margin-left: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+.friend-actions-dropdown-button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.friend-actions-dropdown-button > img {
+  height: inherit;
+  width: auto;
+  filter: invert(65%);
 }
 </style>
